@@ -13,18 +13,56 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-let birthMonth;
+let birthFlower;
 app.use(getInputtedMonth);
 
 function getInputtedMonth(req,res,next){
     const birthday = req.body["birthday"];
     const inputtedDate = new Date(birthday);
-    birthMonth = inputtedDate.getMonth();
+    const birthMonth = inputtedDate.getMonth();
+    switch (birthMonth) {
+        case 0:
+            birthFlower = "Carnation";
+          break;
+        case 1:
+            birthFlower = "Violet";
+          break;
+        case 2:
+            birthFlower = "Daffodil";
+          break;
+        case 3:
+            birthFlower = "Daisy";
+          break;
+        case 4:
+            birthFlower = "Lily of the Valley";
+          break;
+        case 5:
+            birthFlower = "Rose";
+          break;
+        case 6:
+            birthFlower = "Larkspur";
+          break;
+        case 7:
+            birthFlower = "Gladiolus";
+          break;
+        case 8:
+            birthFlower = "Aster";
+          break;
+        case 9:
+            birthFlower = "Marigold";
+          break;
+        case 10:
+            birthFlower = "Chrysanthemum";
+          break;
+        case 11:
+            birthFlower = "Narcissus";
+          break;
+    }
     next();
 }
 
 app.post("/result", (req, res)=>{
-res.send("birth month is "+birthMonth);
+res.send("Your birth flower is "+birthFlower);
 })
 
 
