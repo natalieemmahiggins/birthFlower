@@ -13,6 +13,20 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+let birthMonth;
+app.use(getInputtedMonth);
+
+function getInputtedMonth(req,res,next){
+    const birthday = req.body["birthday"];
+    const inputtedDate = new Date(birthday);
+    birthMonth = inputtedDate.getMonth();
+    next();
+}
+
+app.post("/result", (req, res)=>{
+res.send("birth month is "+birthMonth);
+})
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
